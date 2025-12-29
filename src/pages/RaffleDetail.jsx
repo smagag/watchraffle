@@ -10,6 +10,7 @@ import { motion } from 'framer-motion';
 import TicketGrid from '@/components/raffle/TicketGrid';
 import PaymentSection from '@/components/raffle/PaymentSection';
 import PurchaseModal from '@/components/raffle/PurchaseModal';
+import ImageGallery from '@/components/raffle/ImageGallery';
 
 export default function RaffleDetail() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -26,7 +27,14 @@ export default function RaffleDetail() {
     id: 'demo-1',
     name: 'Rolex Daytona',
     description: 'Cosmograph Daytona in Oystersteel with black dial. This legendary chronograph combines precision engineering with timeless design.',
-    image_url: 'https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=800&q=80',
+    image_url: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/695254ac00a1403bc0449d13/56985ea16_m126503-0003.png',
+    images: [
+      'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/695254ac00a1403bc0449d13/56985ea16_m126503-0003.png',
+      'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/695254ac00a1403bc0449d13/e44091de1_m126503-0003-1.jpeg',
+      'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/695254ac00a1403bc0449d13/18133e42f_m126503-0003-2.jpg',
+      'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/695254ac00a1403bc0449d13/e0c496958_m126503-0003-3.jpg',
+      'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/695254ac00a1403bc0449d13/db69f2aa9_m126503-0003-4.jpg'
+    ],
     total_tickets: 200,
     prize_value_usd: 24500,
     end_date: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString(),
@@ -122,18 +130,14 @@ export default function RaffleDetail() {
               className="sticky top-24"
             >
               <div className="bg-[#131A2B] rounded-2xl border border-white/5 overflow-hidden mb-6">
-                <div className="relative bg-gradient-to-br from-[#1a2235] to-[#131A2B] p-8 flex items-center justify-center min-h-[300px]">
-                  <img
-                    src={raffle.image_url}
-                    alt={raffle.name}
-                    className="max-w-full max-h-72 object-contain drop-shadow-2xl"
-                  />
-                  <Badge className="absolute top-4 left-4 bg-emerald-500/10 text-emerald-400 border-emerald-500/20">
-                    Live
-                  </Badge>
+                <div className="p-6">
+                  <ImageGallery images={raffle.images || [raffle.image_url]} />
                 </div>
 
-                <div className="p-6">
+                <div className="p-6 pt-0">
+                  <Badge className="bg-emerald-500/10 text-emerald-400 border-emerald-500/20 mb-4">
+                    Live
+                  </Badge>
                   <h1 className="text-2xl font-semibold text-white mb-2">{raffle.name}</h1>
                   <p className="text-slate-400 text-sm mb-6">{raffle.description}</p>
 
