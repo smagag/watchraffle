@@ -17,33 +17,10 @@ export default function ImageGallery({ images = [] }) {
   };
 
   return (
-    <div className="flex gap-4">
-      {/* Thumbnail Column */}
-      <div className="flex flex-col gap-3 w-20">
-        {images.map((image, index) => (
-          <button
-            key={index}
-            onClick={() => setSelectedIndex(index)}
-            className={`
-              relative aspect-square rounded-lg border-2 transition-all overflow-hidden
-              ${selectedIndex === index 
-                ? 'border-purple-400 ring-2 ring-purple-400/20' 
-                : 'border-white/10 hover:border-white/20'
-              }
-            `}
-          >
-            <img
-              src={image}
-              alt={`View ${index + 1}`}
-              className="w-full h-full object-cover"
-            />
-          </button>
-        ))}
-      </div>
-
-      {/* Main Image Display */}
-      <div className="flex-1 relative bg-gradient-to-br from-[#1a2235] to-[#131A2B] rounded-2xl border border-white/5 overflow-hidden">
-        <div className="aspect-square flex items-center justify-center p-8 relative">
+    <div className="space-y-4">
+      {/* Main Image Display - Much Larger */}
+      <div className="relative bg-gradient-to-br from-[#0a0f1c] to-[#131A2B] rounded-2xl border border-white/5 overflow-hidden">
+        <div className="aspect-[4/3] flex items-center justify-center p-12 relative">
           <AnimatePresence mode="wait">
             <motion.img
               key={selectedIndex}
@@ -53,7 +30,7 @@ export default function ImageGallery({ images = [] }) {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.3 }}
-              className="max-w-full max-h-full object-contain"
+              className="max-w-full max-h-full object-contain drop-shadow-2xl"
             />
           </AnimatePresence>
 
@@ -64,27 +41,52 @@ export default function ImageGallery({ images = [] }) {
                 variant="ghost"
                 size="icon"
                 onClick={handlePrevious}
-                className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white backdrop-blur-sm rounded-full w-10 h-10"
+                className="absolute left-6 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white backdrop-blur-sm rounded-full w-12 h-12"
               >
-                <ChevronLeft className="w-5 h-5" />
+                <ChevronLeft className="w-6 h-6" />
               </Button>
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={handleNext}
-                className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white backdrop-blur-sm rounded-full w-10 h-10"
+                className="absolute right-6 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white backdrop-blur-sm rounded-full w-12 h-12"
               >
-                <ChevronRight className="w-5 h-5" />
+                <ChevronRight className="w-6 h-6" />
               </Button>
             </>
           )}
 
           {/* Image Counter */}
-          <div className="absolute bottom-4 right-4 bg-black/50 backdrop-blur-sm px-3 py-1.5 rounded-full text-white text-sm">
+          <div className="absolute bottom-6 right-6 bg-black/60 backdrop-blur-sm px-4 py-2 rounded-full text-white text-sm font-medium">
             {selectedIndex + 1} / {images.length}
           </div>
         </div>
       </div>
+
+      {/* Thumbnail Row */}
+      {images.length > 1 && (
+        <div className="flex gap-3 overflow-x-auto pb-2">
+          {images.map((image, index) => (
+            <button
+              key={index}
+              onClick={() => setSelectedIndex(index)}
+              className={`
+                relative w-20 h-20 flex-shrink-0 rounded-xl border-2 transition-all overflow-hidden
+                ${selectedIndex === index 
+                  ? 'border-purple-400 ring-2 ring-purple-400/30 scale-105' 
+                  : 'border-white/10 hover:border-white/30 opacity-60 hover:opacity-100'
+                }
+              `}
+            >
+              <img
+                src={image}
+                alt={`View ${index + 1}`}
+                className="w-full h-full object-cover"
+              />
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
