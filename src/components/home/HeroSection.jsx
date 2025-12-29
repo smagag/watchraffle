@@ -44,7 +44,7 @@ export default function HeroSection() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-lg md:text-xl text-slate-400 mb-10 max-w-2xl mx-auto"
           >
-            Place a $200 hold, get a randomly priced ticket ($1–$200), auto-refunded. Equal odds for all.
+            200 unique tickets ($1–$200). Place a $200 hold, get randomly assigned, auto-refunded. Equal odds for all.
           </motion.p>
 
           <motion.div

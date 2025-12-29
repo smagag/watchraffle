@@ -38,6 +38,16 @@ export default function MechanismExplainer() {
       <div className="bg-gradient-to-br from-purple-500/10 to-blue-500/10 rounded-2xl border border-purple-500/20 p-6">
         <h3 className="text-xl font-semibold text-white mb-4">How Entry Works</h3>
         
+        {/* Unique Pricing Notice */}
+        <div className="mb-6 p-4 bg-blue-500/10 border border-blue-500/20 rounded-xl">
+          <p className="text-blue-300 text-sm font-medium mb-2">🎯 Unique Pricing Model:</p>
+          <p className="text-slate-300 text-sm leading-relaxed">
+            There are exactly 200 tickets, each with a unique price from $1 to $200. Only ONE ticket 
+            exists at each price point—one $1 ticket, one $150 ticket, one $200 ticket, etc. Every ticket 
+            has equal odds regardless of price.
+          </p>
+        </div>
+        
         <div className="grid md:grid-cols-4 gap-4 mb-6">
           {steps.map((step, index) => (
             <motion.div
@@ -57,10 +67,11 @@ export default function MechanismExplainer() {
         </div>
 
         <div className="bg-[#0A0F1C]/50 rounded-xl p-4 border border-white/5">
-          <p className="text-purple-300 font-medium text-sm mb-2">One-Liner:</p>
+          <p className="text-purple-300 font-medium text-sm mb-2">Quick Summary:</p>
           <p className="text-slate-300 text-sm leading-relaxed">
-            Place a $200 hold, receive a randomly priced ticket ($1–$200), and we automatically 
-            refund the difference. Every ticket has the same chance to win.
+            Place a $200 hold per entry. You'll be randomly assigned a unique ticket priced between 
+            $1–$200 (no duplicate prices exist). The difference is automatically refunded. Every ticket 
+            has equal odds to win.
           </p>
         </div>
       </div>
@@ -100,9 +111,9 @@ export default function MechanismExplainer() {
       {/* Why This Works */}
       <div className="grid md:grid-cols-3 gap-4">
         {[
+          { title: 'Unique Prices', desc: 'Each price ($1-$200) exists only once' },
           { title: 'Equal Odds', desc: 'Ticket price doesn\'t affect probability' },
-          { title: 'Transparent', desc: 'All assignments verifiable on-chain' },
-          { title: 'Fair Entry', desc: 'No price-based advantage' }
+          { title: 'Transparent', desc: 'All assignments verifiable on-chain' }
         ].map((item) => (
           <div 
             key={item.title}
