@@ -93,6 +93,17 @@ export default function PaymentSection({
         </div>
       </div>
 
+      {/* Buy Crypto Link */}
+      <a 
+        href="https://www.moonpay.com" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="flex items-center justify-center gap-2 text-sm text-purple-400 hover:text-purple-300 transition-colors mb-4"
+      >
+        Need {paymentMethod}? Buy crypto with card
+        <ExternalLink className="w-3.5 h-3.5" />
+      </a>
+
       {/* Purchase Button */}
       <Button
         onClick={() => onPurchase(paymentMethod)}
