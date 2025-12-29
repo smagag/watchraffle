@@ -2,8 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Button } from '@/components/ui/button';
-import { Wallet, Ticket, Trophy, Shield, ExternalLink, ArrowRight, CheckCircle } from 'lucide-react';
+import { Wallet, Ticket, Trophy, Shield, ExternalLink, ArrowRight, CheckCircle, Shuffle, DollarSign } from 'lucide-react';
 import { motion } from 'framer-motion';
+import MechanismExplainer from '@/components/raffle/MechanismExplainer';
 
 export default function HowItWorks() {
   const steps = [
@@ -73,6 +74,16 @@ export default function HowItWorks() {
           <p className="text-slate-400 text-lg max-w-2xl mx-auto">
             A simple, transparent way to enter luxury watch raffles on the blockchain
           </p>
+        </motion.div>
+
+        {/* Mechanism Explainer */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          className="mb-16"
+        >
+          <MechanismExplainer />
         </motion.div>
 
         {/* Steps */}

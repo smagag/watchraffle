@@ -9,7 +9,6 @@ import { ArrowLeft, Clock, ExternalLink, Shield, Trophy, Copy, Check } from 'luc
 import { motion } from 'framer-motion';
 import TicketGrid from '@/components/raffle/TicketGrid';
 import PaymentSection from '@/components/raffle/PaymentSection';
-import MechanismExplainer from '@/components/raffle/MechanismExplainer';
 import PurchaseModal from '@/components/raffle/PurchaseModal';
 
 export default function RaffleDetail() {
@@ -205,19 +204,10 @@ export default function RaffleDetail() {
 
           {/* Right Column - Ticket Selection */}
           <div className="lg:col-span-3 space-y-6">
-            {/* Mechanism Explainer */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-            >
-              <MechanismExplainer />
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
             >
               <TicketGrid
                 totalTickets={raffle.total_tickets}
@@ -231,7 +221,7 @@ export default function RaffleDetail() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
+              transition={{ delay: 0.2 }}
             >
               <PaymentSection
                 selectedCount={selectedTickets.length}

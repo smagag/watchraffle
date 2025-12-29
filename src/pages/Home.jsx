@@ -6,6 +6,7 @@ import ActiveRaffleCard from '@/components/home/ActiveRaffleCard';
 import StatsBar from '@/components/home/StatsBar';
 import HowItWorksSection from '@/components/home/HowItWorksSection';
 import PastWinnersSection from '@/components/home/PastWinnersSection';
+import MechanismExplainer from '@/components/raffle/MechanismExplainer';
 
 export default function Home() {
   const { data: raffles = [] } = useQuery({
@@ -21,6 +22,14 @@ export default function Home() {
       <HeroSection />
       <ActiveRaffleCard raffle={activeRaffle} />
       <StatsBar raffle={activeRaffle} />
+      
+      {/* Mechanism Explainer */}
+      <section className="py-8">
+        <div className="max-w-4xl mx-auto px-6">
+          <MechanismExplainer />
+        </div>
+      </section>
+      
       <HowItWorksSection />
       <PastWinnersSection winners={completedRaffles} />
     </div>
