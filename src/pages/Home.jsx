@@ -8,24 +8,26 @@ import HowItWorksSection from '@/components/home/HowItWorksSection';
 import PastWinnersSection from '@/components/home/PastWinnersSection';
 import MechanismExplainer from '@/components/raffle/MechanismExplainer';
 
+const DEMO_ACTIVE_RAFFLE = {
+  id: 'demo-1',
+  name: 'Rolex Daytona Cosmograph',
+  description: 'Cosmograph Daytona in 18kt yellow gold with black dial. The ultimate chronograph for racing enthusiasts.',
+  image_url: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/695254ac00a1403bc0449d13/4314007e2_m126503-0003.png',
+  total_tickets: 200,
+  hold_amount: 200,
+  prize_value_usd: 24500,
+  end_date: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000).toISOString(),
+  status: 'active',
+  contract_address: '7xKXp8hQm9nPr3sT2wYzA5bC6dE4fG8iJ1kL0mNoQpRs'
+};
+
 export default function Home() {
   const { data: raffles = [] } = useQuery({
     queryKey: ['raffles'],
     queryFn: () => base44.entities.Raffle.list('-created_date'),
   });
 
-  const activeRaffle = raffles.find(r => r.status === 'active') || {
-    id: 'demo-1',
-    name: 'Rolex Daytona Cosmograph',
-    description: 'Cosmograph Daytona in 18kt yellow gold with black dial. The ultimate chronograph for racing enthusiasts.',
-    image_url: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/695254ac00a1403bc0449d13/4314007e2_m126503-0003.png',
-    total_tickets: 200,
-    hold_amount: 200,
-    prize_value_usd: 24500,
-    end_date: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000).toISOString(),
-    status: 'active',
-    contract_address: '7xKXp8hQm9nPr3sT2wYzA5bC6dE4fG8iJ1kL0mNoQpRs'
-  };
+  const activeRaffle = raffles.find(r => r.status === 'active') || DEMO_ACTIVE_RAFFLE;
   const completedRaffles = raffles.filter(r => r.status === 'completed');
 
   return (

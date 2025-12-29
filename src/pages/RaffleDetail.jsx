@@ -67,10 +67,7 @@ export default function RaffleDetail() {
   const demoSoldTickets = [3, 7, 12, 15, 23, 34, 45, 56, 67, 78, 89, 91, 102, 113, 124, 135, 146, 157, 168, 179, 180, 190, 195, 198];
 
   useEffect(() => {
-    if (!raffle?.end_date) {
-      setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-      return;
-    }
+    if (!raffle?.end_date) return;
 
     const calculateTime = () => {
       const diff = new Date(raffle.end_date) - new Date();
