@@ -36,6 +36,8 @@ export default function Home() {
       <ActiveRaffleCard raffle={activeRaffle} />
       <StatsBar raffle={activeRaffle} />
       
+      <HowItWorksSection />
+      
       {/* Mechanism Explainer */}
       <section className="py-8">
         <div className="max-w-4xl mx-auto px-6">
@@ -43,7 +45,6 @@ export default function Home() {
         </div>
       </section>
       
-      <HowItWorksSection />
       <PastWinnersSection winners={completedRaffles} />
     </div>
   );
