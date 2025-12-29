@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Wallet, Ticket, Trophy, Shield, ExternalLink, ArrowRight, CheckCircle, Shuffle, DollarSign } from 'lucide-react';
 import { motion } from 'framer-motion';
 import MechanismExplainer from '@/components/raffle/MechanismExplainer';
+import SettlementExamples from '@/components/raffle/SettlementExamples';
 
 export default function HowItWorks() {
   const steps = [
@@ -152,11 +153,21 @@ export default function HowItWorks() {
           </div>
         </motion.div>
 
-        {/* CTA */}
+        {/* Settlement Examples */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
+          className="mb-16"
+        >
+          <SettlementExamples />
+        </motion.div>
+
+        {/* CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
           className="text-center"
         >
           <div className="bg-gradient-to-r from-indigo-500/10 via-purple-500/10 to-blue-500/10 rounded-2xl border border-white/5 p-8 md:p-12">
@@ -175,7 +186,7 @@ export default function HowItWorks() {
             </Link>
           </div>
         </motion.div>
-      </div>
-    </div>
-  );
-}
+        </div>
+        </div>
+        );
+        }
