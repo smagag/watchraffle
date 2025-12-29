@@ -4,7 +4,9 @@ import Footer from '@/components/navigation/Footer';
 
 export default function Layout({ children }) {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0D1B2A] via-[#1B263B] to-[#0D1B2A] text-white">
+    <div className="min-h-screen bg-gradient-to-br from-[#1a2942] via-[#243654] to-[#1e3149] text-white relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-500/10 via-transparent to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-indigo-500/10 via-transparent to-transparent pointer-events-none" />
       <style>{`
         :root {
           --background: 222.2 84% 4.9%;
@@ -29,7 +31,7 @@ export default function Layout({ children }) {
         }
         
         body {
-          background: linear-gradient(to bottom right, #0D1B2A, #1B263B, #0D1B2A);
+          background: linear-gradient(to bottom right, #1a2942, #243654, #1e3149);
           min-height: 100vh;
         }
         
