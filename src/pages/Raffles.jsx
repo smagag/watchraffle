@@ -24,10 +24,10 @@ export default function Raffles() {
       id: 'demo-1',
       name: 'Rolex Daytona',
       description: 'Cosmograph Daytona in Oystersteel',
-      image_url: 'https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=600&q=80',
+      image_url: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/695254ac00a1403bc0449d13/4314007e2_m126503-0003.png',
       total_tickets: 200,
       prize_value_usd: 24500,
-      end_date: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString(),
+      end_date: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000).toISOString(),
       status: 'active'
     },
     {
@@ -37,7 +37,7 @@ export default function Raffles() {
       image_url: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&q=80',
       total_tickets: 150,
       prize_value_usd: 12500,
-      end_date: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
+      end_date: new Date(Date.now() + 21 * 24 * 60 * 60 * 1000).toISOString(),
       status: 'upcoming'
     }
   ];
@@ -61,7 +61,7 @@ export default function Raffles() {
             <div className="relative bg-gradient-to-br from-[#1a2235] to-[#131A2B] p-12 flex items-center justify-center min-h-[400px]">
               <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-blue-500/5" />
               <img
-                src={raffle.image_url || 'https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=600&q=80'}
+                src={raffle.image_url || 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/695254ac00a1403bc0449d13/4314007e2_m126503-0003.png'}
                 alt={raffle.name}
                 className="relative z-10 max-w-full max-h-80 object-contain drop-shadow-2xl group-hover:scale-105 transition-transform duration-500"
               />

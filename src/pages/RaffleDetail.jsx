@@ -27,9 +27,9 @@ export default function RaffleDetail() {
     id: 'demo-1',
     name: 'Rolex Daytona',
     description: 'Cosmograph Daytona in Oystersteel with black dial. This legendary chronograph combines precision engineering with timeless design.',
-    image_url: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/695254ac00a1403bc0449d13/da0a4053e_m126503-0003.png',
+    image_url: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/695254ac00a1403bc0449d13/4314007e2_m126503-0003.png',
     images: [
-      'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/695254ac00a1403bc0449d13/da0a4053e_m126503-0003.png',
+      'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/695254ac00a1403bc0449d13/4314007e2_m126503-0003.png',
       'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/695254ac00a1403bc0449d13/14d9cd0a9_m126503-0003-1.jpeg',
       'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/695254ac00a1403bc0449d13/aeefc19e3_m126503-0003-2.jpg',
       'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/695254ac00a1403bc0449d13/1703b3fb1_m126503-0003-3.jpg',

@@ -58,7 +58,7 @@ export default function ActiveRaffleCard({ raffle, ticketsSold = 87 }) {
             <div className="relative bg-gradient-to-br from-[#1a2235] to-[#131A2B] p-8 flex items-center justify-center min-h-[320px]">
               <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-blue-500/5" />
               <img
-                src={raffle.image_url || 'https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=600&q=80'}
+                src={raffle.image_url || 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/695254ac00a1403bc0449d13/4314007e2_m126503-0003.png'}
                 alt={raffle.name}
                 className="relative z-10 max-w-full max-h-72 object-contain drop-shadow-2xl"
               />
