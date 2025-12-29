@@ -1,33 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Clock, Ticket, ExternalLink, ChevronRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import CountdownTimer from '@/components/raffle/CountdownTimer';
 
 export default function ActiveRaffleCard({ raffle, ticketsSold = 87 }) {
-  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-
-  useEffect(() => {
-    if (!raffle?.end_date) return;
-
-    const calculateTime = () => {
-      const diff = new Date(raffle.end_date) - new Date();
-      if (diff <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
-      
-      return {
-        days: Math.floor(diff / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
-        minutes: Math.floor((diff / (1000 * 60)) % 60),
-        seconds: Math.floor((diff / 1000) % 60)
-      };
-    };
-
-    setTimeLeft(calculateTime());
-    const timer = setInterval(() => setTimeLeft(calculateTime()), 1000);
-    return () => clearInterval(timer);
-  }, [raffle?.end_date]);
 
   if (!raffle) {
     return (
@@ -77,21 +57,7 @@ export default function ActiveRaffleCard({ raffle, ticketsSold = 87 }) {
                   <Clock className="w-4 h-4" />
                   <span>Ends in</span>
                 </div>
-                <div className="grid grid-cols-4 gap-3">
-                  {[
-                    { value: timeLeft.days, label: 'Days' },
-                    { value: timeLeft.hours, label: 'Hrs' },
-                    { value: timeLeft.minutes, label: 'Min' },
-                    { value: timeLeft.seconds, label: 'Sec' }
-                  ].map((item) => (
-                    <div key={item.label} className="bg-[#0A0F1C] rounded-lg p-3 text-center">
-                      <div className="text-2xl font-semibold text-white font-mono">
-                        {String(item.value).padStart(2, '0')}
-                      </div>
-                      <div className="text-xs text-slate-500">{item.label}</div>
-                    </div>
-                  ))}
-                </div>
+                <CountdownTimer endDate={raffle.end_date} size="large" />
               </div>
 
               {/* Progress */}

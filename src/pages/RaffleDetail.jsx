@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { useQuery } from '@tanstack/react-query';
@@ -11,13 +11,13 @@ import TicketGrid from '@/components/raffle/TicketGrid';
 import PaymentSection from '@/components/raffle/PaymentSection';
 import PurchaseModal from '@/components/raffle/PurchaseModal';
 import ImageGallery from '@/components/raffle/ImageGallery';
+import CountdownTimer from '@/components/raffle/CountdownTimer';
 
 export default function RaffleDetail() {
   const urlParams = new URLSearchParams(window.location.search);
   const raffleId = urlParams.get('id');
   
   const [selectedTickets, setSelectedTickets] = useState([]);
-  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [copied, setCopied] = useState(false);
   const [showPurchaseModal, setShowPurchaseModal] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState('SOL');
@@ -65,26 +65,6 @@ export default function RaffleDetail() {
   
   // Simulate some sold tickets for demo
   const demoSoldTickets = [3, 7, 12, 15, 23, 34, 45, 56, 67, 78, 89, 91, 102, 113, 124, 135, 146, 157, 168, 179, 180, 190, 195, 198];
-
-  useEffect(() => {
-    if (!raffle?.end_date) return;
-
-    const calculateTime = () => {
-      const diff = new Date(raffle.end_date) - new Date();
-      if (diff <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
-      
-      return {
-        days: Math.floor(diff / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
-        minutes: Math.floor((diff / (1000 * 60)) % 60),
-        seconds: Math.floor((diff / 1000) % 60)
-      };
-    };
-
-    setTimeLeft(calculateTime());
-    const timer = setInterval(() => setTimeLeft(calculateTime()), 1000);
-    return () => clearInterval(timer);
-  }, [raffle?.end_date]);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(raffle?.contract_address || '');
@@ -147,21 +127,7 @@ export default function RaffleDetail() {
                       <Clock className="w-4 h-4" />
                       <span>Raffle ends in</span>
                     </div>
-                    <div className="grid grid-cols-4 gap-2">
-                      {[
-                        { value: timeLeft.days, label: 'Days' },
-                        { value: timeLeft.hours, label: 'Hrs' },
-                        { value: timeLeft.minutes, label: 'Min' },
-                        { value: timeLeft.seconds, label: 'Sec' }
-                      ].map((item) => (
-                        <div key={item.label} className="bg-[#0A0F1C] rounded-lg p-2 text-center">
-                          <div className="text-lg font-semibold text-white font-mono">
-                            {String(item.value).padStart(2, '0')}
-                          </div>
-                          <div className="text-xs text-slate-500">{item.label}</div>
-                        </div>
-                      ))}
-                    </div>
+                    <CountdownTimer endDate={raffle.end_date} />
                   </div>
 
                   {/* Stats */}
