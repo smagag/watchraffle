@@ -68,21 +68,7 @@ export default function MechanismExplainer() {
           ))}
         </div>
 
-        <div className="bg-[#0A0F1C]/50 rounded-xl p-4 border border-white/5">
-          <p className="text-purple-300 font-medium text-sm mb-2">Quick Summary:</p>
-          <p className="text-slate-300 text-sm leading-relaxed">
-            Place the required hold per entry (varies by watch value). You'll be randomly assigned a unique ticket priced between 
-            $1 and the max hold amount (no duplicate prices exist). The difference is automatically refunded. 
-            Raffle ends in 2 weeks or when sold out. Every ticket has equal odds to win.
-          </p>
-        </div>
-        
-        <div className="bg-amber-500/10 border border-amber-500/20 rounded-xl p-4">
-          <p className="text-amber-300 font-medium text-sm mb-1">⚠️ Minimum Threshold:</p>
-          <p className="text-slate-300 text-xs leading-relaxed">
-            If less than 75% of tickets are sold within 2 weeks, the raffle is cancelled and all entry amounts are fully refunded.
-          </p>
-        </div>
+
       </div>
 
       {/* Why This Works */}
