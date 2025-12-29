@@ -117,19 +117,22 @@ export default function Raffles() {
                 <div className="p-4 bg-[#0A0F1C] rounded-xl text-center">
                   <p className="text-slate-400">Winner: {raffle.winner_wallet || 'N/A'}</p>
                 </div>
-              ) : (
+              ) : isActive ? (
                 <Link to={createPageUrl('RaffleDetail') + `?id=${raffle.id}`}>
                   <Button 
-                    className={`w-full h-14 gap-2 text-base font-medium group/btn ${
-                      isActive 
-                        ? 'bg-gradient-to-r from-indigo-500 via-purple-500 to-blue-500 hover:opacity-90 text-white'
-                        : 'bg-[#1a2235] text-slate-300 hover:bg-[#232c42]'
-                    }`}
+                    className="w-full h-14 gap-2 text-base font-medium group/btn bg-gradient-to-r from-indigo-500 via-purple-500 to-blue-500 hover:opacity-90 text-white"
                   >
-                    {isActive ? 'Enter Raffle' : 'View Details'}
+                    Enter Raffle
                     <ChevronRight className="w-5 h-5 group-hover/btn:translate-x-0.5 transition-transform" />
                   </Button>
                 </Link>
+              ) : (
+                <Button 
+                  disabled
+                  className="w-full h-14 gap-2 text-base font-medium bg-[#1a2235] text-slate-500 cursor-not-allowed"
+                >
+                  Coming Soon
+                </Button>
               )}
             </div>
           </div>

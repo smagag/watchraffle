@@ -10,7 +10,10 @@ export default function ActiveRaffleCard({ raffle, ticketsSold = 87 }) {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   useEffect(() => {
-    if (!raffle?.end_date) return;
+    if (!raffle?.end_date) {
+      setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+      return;
+    }
 
     const calculateTime = () => {
       const diff = new Date(raffle.end_date) - new Date();

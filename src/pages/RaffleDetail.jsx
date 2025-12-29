@@ -67,7 +67,10 @@ export default function RaffleDetail() {
   const demoSoldTickets = [3, 7, 12, 15, 23, 34, 45, 56, 67, 78, 89, 91, 102, 113, 124, 135, 146, 157, 168, 179, 180, 190, 195, 198];
 
   useEffect(() => {
-    if (!raffle?.end_date) return;
+    if (!raffle?.end_date) {
+      setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+      return;
+    }
 
     const calculateTime = () => {
       const diff = new Date(raffle.end_date) - new Date();
@@ -112,7 +115,7 @@ export default function RaffleDetail() {
 
   return (
     <div className="pt-24 pb-16">
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-6">
         {/* Back Button */}
         <Link to={createPageUrl('Raffles')}>
           <Button variant="ghost" className="text-slate-400 hover:text-white mb-6 -ml-2 gap-2">
@@ -121,9 +124,9 @@ export default function RaffleDetail() {
           </Button>
         </Link>
 
-        <div className="grid lg:grid-cols-5 gap-8">
+        <div className="grid lg:grid-cols-2 gap-8">
           {/* Left Column - Watch Details */}
-          <div className="lg:col-span-2">
+          <div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -214,7 +217,7 @@ export default function RaffleDetail() {
           </div>
 
           {/* Right Column - Ticket Selection */}
-          <div className="lg:col-span-3 space-y-6">
+          <div className="space-y-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
