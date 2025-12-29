@@ -253,13 +253,23 @@ export default function PurchaseModal({ isOpen, onClose, entryCount, paymentMeth
                   </div>
                 </div>
 
-                <Button
-                  onClick={onClose}
-                  className="w-full bg-gradient-to-r from-indigo-500 via-purple-500 to-blue-500 hover:opacity-90 text-white font-medium h-11 gap-2"
-                >
-                  View My Tickets
-                  <ArrowRight className="w-4 h-4" />
-                </Button>
+                <div className="flex gap-3">
+                  <Button
+                    onClick={onClose}
+                    variant="outline"
+                    className="flex-1 bg-transparent border-white/10 text-slate-300 hover:bg-white/5 hover:text-white h-11"
+                  >
+                    Close
+                  </Button>
+                  <a href="/MyTickets" className="flex-1">
+                    <Button
+                      className="w-full bg-gradient-to-r from-indigo-500 via-purple-500 to-blue-500 hover:opacity-90 text-white font-medium h-11 gap-2"
+                    >
+                      View My Tickets
+                      <ArrowRight className="w-4 h-4" />
+                    </Button>
+                  </a>
+                </div>
               </motion.div>
             )}
           </div>
