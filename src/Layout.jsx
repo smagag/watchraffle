@@ -4,7 +4,7 @@ import Footer from '@/components/navigation/Footer';
 
 export default function Layout({ children }) {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0A0F1C] via-[#0D1228] to-[#1A0E2E] text-white">
+    <div className="min-h-screen bg-gradient-to-br from-[#0D1B2A] via-[#1B263B] to-[#0D1B2A] text-white">
       <style>{`
         :root {
           --background: 222.2 84% 4.9%;
@@ -29,7 +29,7 @@ export default function Layout({ children }) {
         }
         
         body {
-          background: linear-gradient(to bottom right, #0A0F1C, #0D1228, #1A0E2E);
+          background: linear-gradient(to bottom right, #0D1B2A, #1B263B, #0D1B2A);
           min-height: 100vh;
         }
         
