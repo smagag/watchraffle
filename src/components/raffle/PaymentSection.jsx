@@ -8,9 +8,14 @@ import { motion } from 'framer-motion';
 export default function PaymentSection({ 
   selectedCount = 0, 
   onPurchase,
-  isProcessing = false 
+  isProcessing = false,
+  paymentMethod: externalPaymentMethod,
+  setPaymentMethod: setExternalPaymentMethod
 }) {
-  const [paymentMethod, setPaymentMethod] = useState('SOL');
+  const [internalPaymentMethod, setInternalPaymentMethod] = useState('SOL');
+  
+  const paymentMethod = externalPaymentMethod || internalPaymentMethod;
+  const setPaymentMethod = setExternalPaymentMethod || setInternalPaymentMethod;
   
   const HOLD_AMOUNT = 200;
   const totalHold = selectedCount * HOLD_AMOUNT;
@@ -90,7 +95,7 @@ export default function PaymentSection({
 
       {/* Purchase Button */}
       <Button
-        onClick={onPurchase}
+        onClick={() => onPurchase(paymentMethod)}
         disabled={selectedCount === 0 || isProcessing}
         className="w-full h-12 bg-gradient-to-r from-indigo-500 via-purple-500 to-blue-500 hover:opacity-90 text-white font-medium gap-2 group disabled:opacity-50 disabled:cursor-not-allowed"
       >

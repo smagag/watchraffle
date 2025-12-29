@@ -55,6 +55,12 @@ export default function TopNav() {
               Raffles
             </Link>
             <Link 
+              to={createPageUrl('MyTickets')} 
+              className="text-slate-400 hover:text-white text-sm font-medium transition-colors"
+            >
+              My Tickets
+            </Link>
+            <Link 
               to={createPageUrl('Winners')} 
               className="text-slate-400 hover:text-white text-sm font-medium transition-colors"
             >

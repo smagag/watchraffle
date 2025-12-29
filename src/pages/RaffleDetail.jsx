@@ -10,6 +10,7 @@ import { motion } from 'framer-motion';
 import TicketGrid from '@/components/raffle/TicketGrid';
 import PaymentSection from '@/components/raffle/PaymentSection';
 import MechanismExplainer from '@/components/raffle/MechanismExplainer';
+import PurchaseModal from '@/components/raffle/PurchaseModal';
 
 export default function RaffleDetail() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -18,7 +19,8 @@ export default function RaffleDetail() {
   const [selectedTickets, setSelectedTickets] = useState([]);
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [copied, setCopied] = useState(false);
-  const [isProcessing, setIsProcessing] = useState(false);
+  const [showPurchaseModal, setShowPurchaseModal] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState('SOL');
 
   // Demo raffle if none exists
   const demoRaffle = {
@@ -83,13 +85,14 @@ export default function RaffleDetail() {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const handlePurchase = async () => {
-    setIsProcessing(true);
-    // Simulate wallet interaction
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    setIsProcessing(false);
+  const handlePurchase = async (method) => {
+    setPaymentMethod(method);
+    setShowPurchaseModal(true);
+  };
+
+  const handleModalClose = () => {
+    setShowPurchaseModal(false);
     setSelectedTickets([]);
-    alert('Demo: Wallet confirmation would appear here');
   };
 
   if (!raffle) {
@@ -233,11 +236,20 @@ export default function RaffleDetail() {
               <PaymentSection
                 selectedCount={selectedTickets.length}
                 onPurchase={handlePurchase}
-                isProcessing={isProcessing}
+                paymentMethod={paymentMethod}
+                setPaymentMethod={setPaymentMethod}
               />
             </motion.div>
           </div>
         </div>
+
+        {/* Purchase Modal */}
+        <PurchaseModal
+          isOpen={showPurchaseModal}
+          onClose={handleModalClose}
+          entryCount={selectedTickets.length}
+          paymentMethod={paymentMethod}
+        />
       </div>
     </div>
   );

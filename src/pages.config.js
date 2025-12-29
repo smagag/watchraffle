@@ -3,6 +3,7 @@ import Raffles from './pages/Raffles';
 import RaffleDetail from './pages/RaffleDetail';
 import HowItWorks from './pages/HowItWorks';
 import Winners from './pages/Winners';
+import MyTickets from './pages/MyTickets';
 import __Layout from './Layout.jsx';
 
 
@@ -12,6 +13,7 @@ export const PAGES = {
     "RaffleDetail": RaffleDetail,
     "HowItWorks": HowItWorks,
     "Winners": Winners,
+    "MyTickets": MyTickets,
 }
 
 export const pagesConfig = {
