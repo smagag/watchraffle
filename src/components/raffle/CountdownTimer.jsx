@@ -1,23 +1,35 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export default function CountdownTimer({ endDate, size = 'default' }) {
-  const calculateTimeLeft = () => {
-    if (!endDate) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
-    
-    const diff = new Date(endDate).getTime() - Date.now();
-    if (diff <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
-    
-    return {
-      days: Math.floor(diff / (1000 * 60 * 60 * 24)),
-      hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
-      minutes: Math.floor((diff / (1000 * 60)) % 60),
-      seconds: Math.floor((diff / 1000) % 60)
-    };
-  };
-
-  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft);
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   useEffect(() => {
+    if (!endDate) {
+      setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+      return;
+    }
+
+    const calculateTimeLeft = () => {
+      const now = new Date().getTime();
+      const end = new Date(endDate).getTime();
+      const diff = end - now;
+      
+      if (diff <= 0) {
+        return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+      }
+      
+      return {
+        days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((diff / (1000 * 60)) % 60),
+        seconds: Math.floor((diff / 1000) % 60)
+      };
+    };
+
+    // Set initial time
+    setTimeLeft(calculateTimeLeft());
+
+    // Update every second
     const timer = setInterval(() => {
       setTimeLeft(calculateTimeLeft());
     }, 1000);

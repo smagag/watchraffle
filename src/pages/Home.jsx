@@ -16,7 +16,7 @@ const DEMO_ACTIVE_RAFFLE = {
   total_tickets: 200,
   hold_amount: 200,
   prize_value_usd: 24500,
-  end_date: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000).toISOString(),
+  end_date: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
   status: 'active',
   contract_address: '7xKXp8hQm9nPr3sT2wYzA5bC6dE4fG8iJ1kL0mNoQpRs'
 };

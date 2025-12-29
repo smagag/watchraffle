@@ -27,7 +27,7 @@ export default function Raffles() {
       image_url: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/695254ac00a1403bc0449d13/4314007e2_m126503-0003.png',
       total_tickets: 200,
       prize_value_usd: 24500,
-      end_date: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000).toISOString(),
+      end_date: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
       status: 'active'
     },
     {
