@@ -22,7 +22,7 @@ export default function RaffleDetail() {
   const [showPurchaseModal, setShowPurchaseModal] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState('SOL');
 
-  // Demo raffle if none exists
+  // Demo raffle if none exists (2 weeks from now)
   const demoRaffle = {
     id: 'demo-1',
     name: 'Rolex Daytona',
@@ -37,7 +37,7 @@ export default function RaffleDetail() {
     ],
     total_tickets: 200,
     prize_value_usd: 24500,
-    end_date: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString(),
+    end_date: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000).toISOString(),
     status: 'active',
     contract_address: '7xKXp8hQm9nPr3sT2wYzA5bC6dE4fG8iJ1kL0mNoQpRs'
   };
@@ -201,6 +201,13 @@ export default function RaffleDetail() {
                     View on Solscan
                     <ExternalLink className="w-3.5 h-3.5" />
                   </a>
+
+                  {/* Terms */}
+                  <div className="mt-4 p-3 bg-[#0A0F1C]/50 rounded-lg border border-white/5">
+                    <p className="text-slate-500 text-xs leading-relaxed">
+                      * Raffle ends in 2 weeks or when sold out. If less than 75% of tickets are sold within 2 weeks, all entry amounts are fully refunded.
+                    </p>
+                  </div>
                 </div>
               </div>
             </motion.div>

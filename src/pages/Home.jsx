@@ -14,7 +14,18 @@ export default function Home() {
     queryFn: () => base44.entities.Raffle.list('-created_date'),
   });
 
-  const activeRaffle = raffles.find(r => r.status === 'active');
+  const activeRaffle = raffles.find(r => r.status === 'active') || {
+    id: 'demo-1',
+    name: 'Rolex Daytona Cosmograph',
+    description: 'Cosmograph Daytona in 18kt yellow gold with black dial. The ultimate chronograph for racing enthusiasts.',
+    image_url: 'https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=600&q=80',
+    total_tickets: 200,
+    hold_amount: 200,
+    prize_value_usd: 24500,
+    end_date: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000).toISOString(),
+    status: 'active',
+    contract_address: '7xKXp8hQm9nPr3sT2wYzA5bC6dE4fG8iJ1kL0mNoQpRs'
+  };
   const completedRaffles = raffles.filter(r => r.status === 'completed');
 
   return (
