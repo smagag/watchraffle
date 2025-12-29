@@ -56,77 +56,82 @@ export default function Raffles() {
         className="group"
       >
         <div className="bg-[#131A2B] rounded-2xl border border-white/5 overflow-hidden hover:border-white/10 transition-all">
-          <div className="relative h-56 bg-gradient-to-br from-[#1a2235] to-[#131A2B] p-6 flex items-center justify-center">
-            <img
-              src={raffle.image_url || 'https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=600&q=80'}
-              alt={raffle.name}
-              className="max-h-full object-contain group-hover:scale-105 transition-transform duration-500"
-            />
-            <Badge 
-              className={`absolute top-4 left-4 ${
-                isActive 
-                  ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' 
-                  : isCompleted
-                  ? 'bg-slate-500/10 text-slate-400 border-slate-500/20'
-                  : 'bg-blue-500/10 text-blue-400 border-blue-500/20'
-              }`}
-            >
-              {isActive ? 'Live' : isCompleted ? 'Completed' : 'Upcoming'}
-            </Badge>
-          </div>
-
-          <div className="p-6">
-            <h3 className="text-xl font-semibold text-white mb-2">{raffle.name}</h3>
-            <p className="text-slate-400 text-sm mb-4">{raffle.description}</p>
-
-            <div className="space-y-3 mb-6">
-              <div className="flex items-center justify-between text-sm">
-                <span className="text-slate-500 flex items-center gap-2">
-                  <Trophy className="w-4 h-4" />
-                  Prize Value
-                </span>
-                <span className="text-white font-medium">
-                  ${raffle.prize_value_usd?.toLocaleString() || '0'}
-                </span>
-              </div>
-              <div className="flex items-center justify-between text-sm">
-                <span className="text-slate-500 flex items-center gap-2">
-                  <Ticket className="w-4 h-4" />
-                  Entry Hold
-                </span>
-                <span className="text-white font-medium">$200</span>
-              </div>
-              {!isCompleted && (
-                <div className="flex items-center justify-between text-sm">
-                  <span className="text-slate-500 flex items-center gap-2">
-                    <Clock className="w-4 h-4" />
-                    {isActive ? 'Ends' : 'Starts'}
-                  </span>
-                  <span className="text-white font-medium">
-                    {new Date(raffle.end_date).toLocaleDateString()}
-                  </span>
-                </div>
-              )}
+          <div className="grid md:grid-cols-2 gap-0">
+            {/* Watch Image - Left Side */}
+            <div className="relative bg-gradient-to-br from-[#1a2235] to-[#131A2B] p-12 flex items-center justify-center min-h-[400px]">
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-blue-500/5" />
+              <img
+                src={raffle.image_url || 'https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=600&q=80'}
+                alt={raffle.name}
+                className="relative z-10 max-w-full max-h-80 object-contain drop-shadow-2xl group-hover:scale-105 transition-transform duration-500"
+              />
+              <Badge 
+                className={`absolute top-6 left-6 ${
+                  isActive 
+                    ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' 
+                    : isCompleted
+                    ? 'bg-slate-500/10 text-slate-400 border-slate-500/20'
+                    : 'bg-blue-500/10 text-blue-400 border-blue-500/20'
+                }`}
+              >
+                {isActive ? 'Live' : isCompleted ? 'Completed' : 'Coming Soon'}
+              </Badge>
             </div>
 
-            {isCompleted ? (
-              <div className="p-3 bg-[#0A0F1C] rounded-xl text-center">
-                <p className="text-slate-400 text-sm">Winner: {raffle.winner_wallet || 'N/A'}</p>
+            {/* Details - Right Side */}
+            <div className="p-8 flex flex-col justify-center">
+              <h3 className="text-3xl font-semibold text-white mb-3">{raffle.name}</h3>
+              <p className="text-slate-400 mb-6">{raffle.description}</p>
+
+              <div className="space-y-4 mb-8">
+                <div className="flex items-center justify-between p-4 bg-[#0A0F1C] rounded-xl">
+                  <span className="text-slate-400 flex items-center gap-2">
+                    <Trophy className="w-5 h-5" />
+                    Prize Value
+                  </span>
+                  <span className="text-white font-semibold text-lg">
+                    ${raffle.prize_value_usd?.toLocaleString() || '0'}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between p-4 bg-[#0A0F1C] rounded-xl">
+                  <span className="text-slate-400 flex items-center gap-2">
+                    <Ticket className="w-5 h-5" />
+                    Entry Hold
+                  </span>
+                  <span className="text-white font-semibold text-lg">$200</span>
+                </div>
+                {!isCompleted && (
+                  <div className="flex items-center justify-between p-4 bg-[#0A0F1C] rounded-xl">
+                    <span className="text-slate-400 flex items-center gap-2">
+                      <Clock className="w-5 h-5" />
+                      {isActive ? 'Ends' : 'Starts'}
+                    </span>
+                    <span className="text-white font-semibold text-lg">
+                      {new Date(raffle.end_date).toLocaleDateString()}
+                    </span>
+                  </div>
+                )}
               </div>
-            ) : (
-              <Link to={createPageUrl('RaffleDetail') + `?id=${raffle.id}`}>
-                <Button 
-                  className={`w-full h-11 gap-2 group/btn ${
-                    isActive 
-                      ? 'bg-gradient-to-r from-indigo-500 via-purple-500 to-blue-500 hover:opacity-90 text-white'
-                      : 'bg-[#1a2235] text-slate-300 hover:bg-[#232c42]'
-                  }`}
-                >
-                  {isActive ? 'Enter Raffle' : 'View Details'}
-                  <ChevronRight className="w-4 h-4 group-hover/btn:translate-x-0.5 transition-transform" />
-                </Button>
-              </Link>
-            )}
+
+              {isCompleted ? (
+                <div className="p-4 bg-[#0A0F1C] rounded-xl text-center">
+                  <p className="text-slate-400">Winner: {raffle.winner_wallet || 'N/A'}</p>
+                </div>
+              ) : (
+                <Link to={createPageUrl('RaffleDetail') + `?id=${raffle.id}`}>
+                  <Button 
+                    className={`w-full h-14 gap-2 text-base font-medium group/btn ${
+                      isActive 
+                        ? 'bg-gradient-to-r from-indigo-500 via-purple-500 to-blue-500 hover:opacity-90 text-white'
+                        : 'bg-[#1a2235] text-slate-300 hover:bg-[#232c42]'
+                    }`}
+                  >
+                    {isActive ? 'Enter Raffle' : 'View Details'}
+                    <ChevronRight className="w-5 h-5 group-hover/btn:translate-x-0.5 transition-transform" />
+                  </Button>
+                </Link>
+              )}
+            </div>
           </div>
         </div>
       </motion.div>
@@ -146,32 +151,34 @@ export default function Raffles() {
           <p className="text-slate-400 text-lg">Browse active and upcoming luxury watch raffles</p>
         </motion.div>
 
-        {/* Active Raffles */}
+        {/* Active Raffle - Single Large Card */}
         {(activeRaffles.length > 0 || !raffles.length) && (
           <div className="mb-12">
-            <h2 className="text-xl font-medium text-white mb-6 flex items-center gap-2">
+            <h2 className="text-2xl font-medium text-white mb-6 flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-emerald-400" />
               Live Now
             </h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {(activeRaffles.length > 0 ? activeRaffles : displayRaffles.filter(r => r.status === 'active')).map((raffle, i) => (
-                <RaffleCard key={raffle.id} raffle={raffle} index={i} />
-              ))}
+            <div className="max-w-4xl mx-auto">
+              {(() => {
+                const activeRaffle = activeRaffles.length > 0 ? activeRaffles[0] : displayRaffles.find(r => r.status === 'active');
+                return activeRaffle ? <RaffleCard raffle={activeRaffle} index={0} /> : null;
+              })()}
             </div>
           </div>
         )}
 
-        {/* Upcoming Raffles */}
+        {/* Next Raffle - Single Large Card */}
         {(upcomingRaffles.length > 0 || (!raffles.length && displayRaffles.some(r => r.status === 'upcoming'))) && (
           <div className="mb-12">
-            <h2 className="text-xl font-medium text-white mb-6 flex items-center gap-2">
+            <h2 className="text-2xl font-medium text-white mb-6 flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-blue-400" />
-              Coming Soon
+              Next
             </h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {(upcomingRaffles.length > 0 ? upcomingRaffles : displayRaffles.filter(r => r.status === 'upcoming')).map((raffle, i) => (
-                <RaffleCard key={raffle.id} raffle={raffle} index={i} />
-              ))}
+            <div className="max-w-4xl mx-auto">
+              {(() => {
+                const nextRaffle = upcomingRaffles.length > 0 ? upcomingRaffles[0] : displayRaffles.find(r => r.status === 'upcoming');
+                return nextRaffle ? <RaffleCard raffle={nextRaffle} index={0} /> : null;
+              })()}
             </div>
           </div>
         )}
