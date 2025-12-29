@@ -26,7 +26,6 @@ export default function Raffles() {
       description: 'Cosmograph Daytona in Oystersteel',
       image_url: 'https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=600&q=80',
       total_tickets: 200,
-      ticket_price_usd: 125,
       prize_value_usd: 24500,
       end_date: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString(),
       status: 'active'
@@ -37,7 +36,6 @@ export default function Raffles() {
       description: 'Moonwatch Professional',
       image_url: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&q=80',
       total_tickets: 150,
-      ticket_price_usd: 85,
       prize_value_usd: 12500,
       end_date: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
       status: 'upcoming'

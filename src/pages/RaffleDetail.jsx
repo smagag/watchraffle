@@ -27,7 +27,6 @@ export default function RaffleDetail() {
     description: 'Cosmograph Daytona in Oystersteel with black dial. This legendary chronograph combines precision engineering with timeless design.',
     image_url: 'https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=800&q=80',
     total_tickets: 200,
-    ticket_price_usd: 125,
     prize_value_usd: 24500,
     end_date: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString(),
     status: 'active',
