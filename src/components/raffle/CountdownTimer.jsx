@@ -50,7 +50,7 @@ export default function CountdownTimer({ endDate, size = 'default' }) {
         { value: timeLeft.seconds, label: 'Sec' }
       ].map((item) => (
         <div key={item.label} className={`bg-[#0A0F1C] rounded-lg ${padding} text-center`}>
-          <div className={`${textSize} font-semibold text-white font-mono`}>
+          <div className={`${textSize} font-semibold text-emerald-400 font-mono`}>
             {String(item.value).padStart(2, '0')}
           </div>
           <div className={`${labelSize} text-slate-500`}>{item.label}</div>
