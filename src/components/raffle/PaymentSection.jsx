@@ -7,19 +7,19 @@ import { motion } from 'framer-motion';
 
 export default function PaymentSection({ 
   selectedCount = 0, 
-  pricePerTicket = 125,
   onPurchase,
   isProcessing = false 
 }) {
   const [paymentMethod, setPaymentMethod] = useState('SOL');
   
-  const totalUSD = selectedCount * pricePerTicket;
+  const HOLD_AMOUNT = 200;
+  const totalHold = selectedCount * HOLD_AMOUNT;
   
-  // Mock conversion rates
+  // Mock conversion rates for hold amount
   const conversions = {
-    SOL: (totalUSD / 180).toFixed(4),
-    USDC: totalUSD.toFixed(2),
-    USDT: totalUSD.toFixed(2)
+    SOL: (totalHold / 180).toFixed(4),
+    USDC: totalHold.toFixed(2),
+    USDT: totalHold.toFixed(2)
   };
 
   const methods = [
@@ -54,25 +54,37 @@ export default function PaymentSection({
         </div>
       </div>
 
+      {/* How It Works Info */}
+      <div className="mb-6 p-4 bg-purple-500/5 border border-purple-500/20 rounded-xl">
+        <p className="text-purple-300 text-sm font-medium mb-2">How entry works:</p>
+        <p className="text-slate-300 text-xs leading-relaxed">
+          Place a ${HOLD_AMOUNT} hold per ticket. You'll be randomly assigned a ticket priced $1–$200. 
+          The difference is automatically refunded to your wallet.
+        </p>
+      </div>
+
       {/* Summary */}
       <div className="space-y-4 mb-6">
         <div className="flex items-center justify-between text-sm">
-          <span className="text-slate-400">Tickets selected</span>
+          <span className="text-slate-400">Entries</span>
           <span className="text-white font-medium">{selectedCount}</span>
         </div>
         <div className="flex items-center justify-between text-sm">
-          <span className="text-slate-400">Price per ticket</span>
-          <span className="text-white">${pricePerTicket}</span>
+          <span className="text-slate-400">Hold per entry</span>
+          <span className="text-white">${HOLD_AMOUNT}</span>
         </div>
         <div className="h-px bg-white/5" />
         <div className="flex items-center justify-between">
-          <span className="text-slate-400">Total</span>
+          <span className="text-slate-400">Total Hold</span>
           <div className="text-right">
-            <p className="text-white font-semibold text-xl">${totalUSD.toLocaleString()}</p>
+            <p className="text-white font-semibold text-xl">${totalHold.toLocaleString()}</p>
             <p className="text-slate-400 text-sm font-mono">
               ≈ {conversions[paymentMethod]} {paymentMethod}
             </p>
           </div>
+        </div>
+        <div className="bg-[#0A0F1C] rounded-lg p-3 text-xs text-slate-400">
+          Final cost: $1–$200 per ticket (randomly assigned + auto-refunded)
         </div>
       </div>
 
@@ -92,14 +104,14 @@ export default function PaymentSection({
         ) : (
           <>
             <Wallet className="w-4 h-4" />
-            Buy {selectedCount} Ticket{selectedCount > 1 ? 's' : ''}
+            Place ${totalHold} Hold
             <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
           </>
         )}
       </Button>
 
       <p className="text-center text-slate-500 text-xs mt-4">
-        Transaction will be confirmed in your wallet
+        Excess funds automatically refunded after ticket assignment
       </p>
     </div>
   );

@@ -94,9 +94,9 @@ export default function Raffles() {
               <div className="flex items-center justify-between text-sm">
                 <span className="text-slate-500 flex items-center gap-2">
                   <Ticket className="w-4 h-4" />
-                  Entry from
+                  Entry Hold
                 </span>
-                <span className="text-white font-medium">${raffle.ticket_price_usd}</span>
+                <span className="text-white font-medium">$200</span>
               </div>
               {!isCompleted && (
                 <div className="flex items-center justify-between text-sm">

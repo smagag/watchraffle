@@ -7,10 +7,10 @@ export default function TicketGrid({
   totalTickets = 200, 
   soldTickets = [], 
   ownedTickets = [],
-  ticketPrice = 125,
   onSelect,
   selectedTickets = []
 }) {
+  const HOLD_AMOUNT = 200;
   const getTicketStatus = (number) => {
     if (ownedTickets.includes(number)) return 'owned';
     if (soldTickets.includes(number)) return 'sold';
@@ -31,8 +31,17 @@ export default function TicketGrid({
 
   return (
     <div className="bg-[#131A2B] rounded-2xl border border-white/5 p-6">
+      <div className="mb-4">
+        <h3 className="text-lg font-medium text-white mb-2">Select Entries</h3>
+        <p className="text-slate-400 text-sm">
+          Pick how many entries you want. Each entry randomly assigns you one ticket ($1–$200).
+        </p>
+      </div>
+      
       <div className="flex items-center justify-between mb-6">
-        <h3 className="text-lg font-medium text-white">Select Tickets</h3>
+        <div className="text-sm text-slate-500">
+          {soldTickets.length} / {totalTickets} tickets sold
+        </div>
         <div className="flex items-center gap-4 text-sm">
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded bg-[#1a2235] border border-white/10" />
@@ -102,15 +111,15 @@ export default function TicketGrid({
           >
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-slate-400 text-sm">Selected tickets</p>
+                <p className="text-slate-400 text-sm">Selected entries</p>
                 <p className="text-white font-mono text-sm mt-1">
-                  {selectedTickets.sort((a, b) => a - b).map(t => `#${t}`).join(', ')}
+                  {selectedTickets.length} {selectedTickets.length === 1 ? 'entry' : 'entries'}
                 </p>
               </div>
               <div className="text-right">
-                <p className="text-slate-400 text-sm">Total</p>
+                <p className="text-slate-400 text-sm">Hold Required</p>
                 <p className="text-white font-semibold text-lg">
-                  ${(selectedTickets.length * ticketPrice).toLocaleString()}
+                  ${(selectedTickets.length * HOLD_AMOUNT).toLocaleString()}
                 </p>
               </div>
             </div>

@@ -112,9 +112,14 @@ export default function ActiveRaffleCard({ raffle, ticketsSold = 87 }) {
               </div>
 
               {/* Price */}
-              <div className="flex items-center justify-between mb-6 p-4 bg-[#0A0F1C] rounded-xl">
-                <span className="text-slate-400 text-sm">Entry from</span>
-                <span className="text-white font-semibold text-lg">${raffle.ticket_price_usd}</span>
+              <div className="mb-6 p-4 bg-[#0A0F1C] rounded-xl">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-slate-400 text-sm">Entry Hold</span>
+                  <span className="text-white font-semibold text-lg">$200</span>
+                </div>
+                <p className="text-slate-500 text-xs">
+                  Final cost: $1–$200 (randomly assigned + refunded)
+                </p>
               </div>
 
               {/* Actions */}

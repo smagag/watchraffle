@@ -9,6 +9,7 @@ import { ArrowLeft, Clock, ExternalLink, Shield, Trophy, Copy, Check } from 'luc
 import { motion } from 'framer-motion';
 import TicketGrid from '@/components/raffle/TicketGrid';
 import PaymentSection from '@/components/raffle/PaymentSection';
+import MechanismExplainer from '@/components/raffle/MechanismExplainer';
 
 export default function RaffleDetail() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -202,16 +203,24 @@ export default function RaffleDetail() {
 
           {/* Right Column - Ticket Selection */}
           <div className="lg:col-span-3 space-y-6">
+            {/* Mechanism Explainer */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
             >
+              <MechanismExplainer />
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+            >
               <TicketGrid
                 totalTickets={raffle.total_tickets}
                 soldTickets={soldTickets.length > 0 ? soldTickets : demoSoldTickets}
                 ownedTickets={[]}
-                ticketPrice={raffle.ticket_price_usd}
                 selectedTickets={selectedTickets}
                 onSelect={setSelectedTickets}
               />
@@ -220,11 +229,10 @@ export default function RaffleDetail() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
+              transition={{ delay: 0.3 }}
             >
               <PaymentSection
                 selectedCount={selectedTickets.length}
-                pricePerTicket={raffle.ticket_price_usd}
                 onPurchase={handlePurchase}
                 isProcessing={isProcessing}
               />
