@@ -63,8 +63,8 @@ export default function PaymentSection({
       <div className="mb-6 p-4 bg-purple-500/5 border border-purple-500/20 rounded-xl">
         <p className="text-purple-300 text-sm font-medium mb-2">How entry works:</p>
         <p className="text-slate-300 text-xs leading-relaxed">
-          Place a ${HOLD_AMOUNT} hold per ticket. You'll be randomly assigned a ticket priced $1–$200. 
-          The difference is automatically refunded to your wallet.
+          Place a ${HOLD_AMOUNT} hold per ticket. You'll be randomly assigned a unique ticket price. 
+          The difference is automatically refunded. Raffle ends in 2 weeks or when sold out.
         </p>
       </div>
 
