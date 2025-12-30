@@ -90,7 +90,7 @@ export default function ActiveRaffleCard({ raffle, ticketsSold = 87 }) {
 
               {/* Actions */}
               <div className="flex gap-3 mt-auto">
-                <Link to={createPageUrl('RaffleDetail') + `?id=${raffle.id}`} className="flex-1">
+                <Link to={createPageUrl('RaffleDetail') + '?id=demo-1'} className="flex-1">
                   <Button 
                     className="w-full bg-gradient-to-r from-indigo-500 via-purple-500 to-blue-500 hover:opacity-90 text-white font-medium h-11 gap-2 group"
                   >
