@@ -98,18 +98,18 @@ export default function ImageGallery({ images = [] }) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setIsLightboxOpen(false)}
-            className="fixed inset-0 z-[9999] bg-black/60 backdrop-blur-lg flex items-center justify-center p-4"
+            className="fixed inset-0 z-[9999] bg-black/60 backdrop-blur-lg flex items-center justify-center p-16"
           >
             <Button
               variant="ghost"
               size="icon"
               onClick={() => setIsLightboxOpen(false)}
-              className="absolute top-4 right-4 text-white hover:bg-white/10 w-12 h-12"
+              className="absolute top-8 right-8 text-white hover:bg-white/10 w-12 h-12"
             >
               <X className="w-6 h-6" />
             </Button>
 
-            <div className="relative max-w-7xl w-full h-full flex items-center justify-center">
+            <div className="relative max-w-4xl max-h-[70vh] w-full flex items-center justify-center">
               <motion.img
                 initial={{ scale: 0.9 }}
                 animate={{ scale: 1 }}
