@@ -7,13 +7,13 @@ import { base44 } from '@/api/base44Client';
 export default function SignInModal({ isOpen, onClose }) {
   const [email, setEmail] = useState('');
 
-  const handleGoogleSignIn = () => {
-    base44.auth.redirectToLogin();
+  const handleGoogleSignIn = async () => {
+    await base44.auth.redirectToLogin(window.location.href);
   };
 
-  const handleEmailContinue = () => {
+  const handleEmailContinue = async () => {
     if (email) {
-      base44.auth.redirectToLogin();
+      await base44.auth.redirectToLogin(window.location.href);
     }
   };
 
