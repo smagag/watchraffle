@@ -118,7 +118,7 @@ export default function Raffles() {
                   <p className="text-slate-400">Winner: {raffle.winner_wallet || 'N/A'}</p>
                 </div>
               ) : isActive ? (
-                <Link to={createPageUrl('RaffleDetail') + `?id=${raffle.id}`}>
+                <Link to={createPageUrl('RaffleDetail') + '?id=demo-1'}>
                   <Button 
                     className="w-full h-14 gap-2 text-base font-medium group/btn bg-gradient-to-r from-indigo-500 via-purple-500 to-blue-500 hover:opacity-90 text-white"
                   >

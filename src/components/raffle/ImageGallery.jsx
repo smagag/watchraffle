@@ -98,7 +98,7 @@ export default function ImageGallery({ images = [] }) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setIsLightboxOpen(false)}
-            className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-md flex items-center justify-center p-4"
+            className="fixed inset-0 z-[9999] bg-black/60 backdrop-blur-lg flex items-center justify-center p-4"
           >
             <Button
               variant="ghost"
