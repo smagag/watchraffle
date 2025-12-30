@@ -69,16 +69,16 @@ export default function SignInModal({ isOpen, onClose }) {
           {/* Wallet Options */}
           <div className="grid grid-cols-4 gap-3 mt-6">
             {[
-              { name: 'MetaMask', icon: '🦊' },
-              { name: 'Coinbase', icon: '⬤' },
-              { name: 'Rainbow', icon: '💬' },
-              { name: 'WalletConnect', icon: '〰️' }
+              { name: 'MetaMask', icon: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/695254ac00a1403bc0449d13/3ce29aa8f_images.png' },
+              { name: 'Coinbase', icon: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/695254ac00a1403bc0449d13/735804b44_WalletLogo.png' },
+              { name: 'Phantom', icon: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/695254ac00a1403bc0449d13/af3875159_images.jpeg' },
+              { name: 'WalletConnect', icon: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/695254ac00a1403bc0449d13/a49cf1924_images-1.png' }
             ].map((wallet) => (
               <button
                 key={wallet.name}
-                className="h-20 border-2 border-gray-300 rounded-xl hover:border-gray-400 transition-colors flex items-center justify-center text-3xl"
+                className="h-20 border-2 border-gray-300 rounded-xl hover:border-gray-400 transition-colors flex items-center justify-center p-4"
               >
-                {wallet.icon}
+                <img src={wallet.icon} alt={wallet.name} className="w-full h-full object-contain" />
               </button>
             ))}
           </div>
