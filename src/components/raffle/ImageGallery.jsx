@@ -20,17 +20,17 @@ export default function ImageGallery({ images = [] }) {
   return (
     <div className="space-y-4">
       {/* Main Image Display - Fixed Size */}
-      <div className="relative bg-gradient-to-br from-[#0a0f1c] to-[#131A2B] rounded-2xl border border-white/5 overflow-hidden">
-        <div className="aspect-[4/3] flex items-center justify-center p-12 relative">
+      <div className="relative bg-gradient-to-br from-[#0a0f1c] to-[#131A2B] rounded-2xl border border-white/5 overflow-hidden h-[500px]">
+        <div className="absolute inset-0 flex items-center justify-center p-12">
           <AnimatePresence mode="wait">
             <motion.img
               key={selectedIndex}
               src={images[selectedIndex]}
               alt={`Product image ${selectedIndex + 1}`}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.3 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
               onClick={() => setIsLightboxOpen(true)}
               className="max-w-full max-h-full object-contain drop-shadow-2xl cursor-zoom-in"
             />
@@ -98,7 +98,7 @@ export default function ImageGallery({ images = [] }) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setIsLightboxOpen(false)}
-            className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm flex items-center justify-center p-4"
+            className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-md flex items-center justify-center p-4"
           >
             <Button
               variant="ghost"
