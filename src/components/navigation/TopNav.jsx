@@ -10,16 +10,18 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import SignInModal from '@/components/auth/SignInModal';
 
 export default function TopNav() {
   const [user, setUser] = useState(null);
+  const [showSignIn, setShowSignIn] = useState(false);
 
   useEffect(() => {
     base44.auth.me().then(setUser).catch(() => setUser(null));
   }, []);
 
   const handleLogin = () => {
-    base44.auth.redirectToLogin();
+    setShowSignIn(true);
   };
 
   const handleLogout = () => {
@@ -98,6 +100,8 @@ export default function TopNav() {
           )}
         </div>
       </div>
+
+      <SignInModal isOpen={showSignIn} onClose={() => setShowSignIn(false)} />
     </nav>
   );
 }
