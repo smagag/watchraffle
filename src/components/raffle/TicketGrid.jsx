@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Check, Lock, User } from 'lucide-react';
+import { Check, Lock, User, Shuffle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Button } from '@/components/ui/button';
 
 export default function TicketGrid({ 
   totalTickets = 200, 
@@ -29,6 +30,23 @@ export default function TicketGrid({
     }
   };
 
+  const handleRandomSelect = (count) => {
+    const available = Array.from({ length: totalTickets }, (_, i) => i + 1)
+      .filter(n => !soldTickets.includes(n) && !ownedTickets.includes(n));
+    
+    const random = [];
+    const copy = [...available];
+    for (let i = 0; i < Math.min(count, copy.length); i++) {
+      const idx = Math.floor(Math.random() * copy.length);
+      random.push(copy.splice(idx, 1)[0]);
+    }
+    onSelect(random);
+  };
+
+  const handleClearSelection = () => {
+    onSelect([]);
+  };
+
   return (
     <div className="bg-[#131A2B] rounded-2xl border border-white/5 p-6">
       <div className="mb-4">
@@ -37,28 +55,69 @@ export default function TicketGrid({
           Pick how many entries you want. Each entry randomly assigns you one ticket ($1–$200).
         </p>
       </div>
+
+      {/* Quick Select Buttons */}
+      <div className="flex items-center gap-2 mb-4">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => handleRandomSelect(1)}
+          className="bg-[#1a2235] border-white/10 text-slate-300 hover:bg-[#1e2842] hover:text-white gap-2"
+        >
+          <Shuffle className="w-3.5 h-3.5" />
+          Random 1
+        </Button>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => handleRandomSelect(5)}
+          className="bg-[#1a2235] border-white/10 text-slate-300 hover:bg-[#1e2842] hover:text-white gap-2"
+        >
+          <Shuffle className="w-3.5 h-3.5" />
+          Random 5
+        </Button>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => handleRandomSelect(10)}
+          className="bg-[#1a2235] border-white/10 text-slate-300 hover:bg-[#1e2842] hover:text-white gap-2"
+        >
+          <Shuffle className="w-3.5 h-3.5" />
+          Random 10
+        </Button>
+        {selectedTickets.length > 0 && (
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={handleClearSelection}
+            className="text-slate-400 hover:text-white ml-auto"
+          >
+            Clear
+          </Button>
+        )}
+      </div>
       
-      <div className="flex items-center justify-between mb-6">
-        <div className="text-sm text-slate-500">
-          {soldTickets.length} / {totalTickets} tickets sold
+      <div className="flex items-center justify-between mb-4 text-xs">
+        <div className="text-slate-500">
+          {soldTickets.length} / {totalTickets} sold
         </div>
-        <div className="flex items-center gap-4 text-sm">
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded bg-[#1a2235] border border-white/10" />
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1.5">
+            <div className="w-2.5 h-2.5 rounded bg-[#1a2235] border border-white/10" />
             <span className="text-slate-400">Available</span>
           </div>
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded bg-gradient-to-r from-indigo-500 to-purple-500" />
+          <div className="flex items-center gap-1.5">
+            <div className="w-2.5 h-2.5 rounded bg-gradient-to-r from-indigo-500 to-purple-500" />
             <span className="text-slate-400">Selected</span>
           </div>
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded bg-slate-700" />
+          <div className="flex items-center gap-1.5">
+            <div className="w-2.5 h-2.5 rounded bg-slate-700" />
             <span className="text-slate-400">Sold</span>
           </div>
         </div>
       </div>
 
-      <div className="grid grid-cols-10 gap-2 max-h-[400px] overflow-y-auto pr-2 scrollbar-thin">
+      <div className="grid grid-cols-10 gap-1.5 max-h-[280px] overflow-y-auto pr-2 scrollbar-thin">
         {Array.from({ length: totalTickets }, (_, i) => i + 1).map((number) => {
           const status = getTicketStatus(number);
           
@@ -70,7 +129,7 @@ export default function TicketGrid({
               onClick={() => handleTicketClick(number)}
               disabled={status === 'sold'}
               className={cn(
-                'relative aspect-square rounded-lg flex items-center justify-center text-sm font-mono transition-all',
+                'relative aspect-square rounded-md flex items-center justify-center text-xs font-mono transition-all',
                 status === 'available' && 'bg-[#1a2235] border border-white/10 text-slate-400 hover:border-purple-500/50 hover:text-white cursor-pointer',
                 status === 'selected' && 'bg-gradient-to-r from-indigo-500 via-purple-500 to-blue-500 text-white border-2 border-white/20 cursor-pointer',
                 status === 'sold' && 'bg-slate-800/50 text-slate-600 cursor-not-allowed',
@@ -78,23 +137,13 @@ export default function TicketGrid({
               )}
             >
               {status === 'sold' ? (
-                <Lock className="w-3.5 h-3.5" />
+                <Lock className="w-3 h-3" />
               ) : status === 'owned' ? (
-                <User className="w-3.5 h-3.5" />
+                <User className="w-3 h-3" />
               ) : status === 'selected' ? (
-                <Check className="w-4 h-4" />
+                <Check className="w-3.5 h-3.5" />
               ) : (
                 number
-              )}
-              
-              {status === 'selected' && (
-                <motion.span
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="absolute -top-1 -right-1 w-4 h-4 bg-white rounded-full flex items-center justify-center"
-                >
-                  <Check className="w-2.5 h-2.5 text-purple-600" />
-                </motion.span>
               )}
             </motion.button>
           );
