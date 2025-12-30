@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
+import { base44 } from '@/api/base44Client';
 import { Button } from '@/components/ui/button';
-import { Wallet, ChevronDown, LogOut } from 'lucide-react';
+import { User, ChevronDown, LogOut } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,21 +12,18 @@ import {
 } from '@/components/ui/dropdown-menu';
 
 export default function TopNav() {
-  const [connected, setConnected] = useState(false);
-  const [wallet, setWallet] = useState(null);
+  const [user, setUser] = useState(null);
 
-  const handleConnect = () => {
-    // Simulated wallet connection
-    setConnected(true);
-    setWallet({
-      address: '7xKX...4mPq',
-      balance: '12.45 SOL'
-    });
+  useEffect(() => {
+    base44.auth.me().then(setUser).catch(() => setUser(null));
+  }, []);
+
+  const handleLogin = () => {
+    base44.auth.redirectToLogin();
   };
 
-  const handleDisconnect = () => {
-    setConnected(false);
-    setWallet(null);
+  const handleLogout = () => {
+    base44.auth.logout();
   };
 
   return (
@@ -68,36 +66,34 @@ export default function TopNav() {
             </Link>
           </div>
 
-          {connected ? (
+          {user ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button 
                   variant="outline" 
                   className="bg-[#131A2B] border-white/10 text-white hover:bg-[#1a2235] hover:text-white gap-2"
                 >
-                  <div className="w-2 h-2 rounded-full bg-emerald-400" />
-                  <span className="font-mono text-sm">{wallet.address}</span>
-                  <span className="text-slate-400 text-sm">{wallet.balance}</span>
+                  <User className="w-4 h-4" />
+                  <span className="text-sm">{user.full_name || user.email}</span>
                   <ChevronDown className="w-4 h-4 text-slate-400" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="bg-[#131A2B] border-white/10">
                 <DropdownMenuItem 
-                  onClick={handleDisconnect}
+                  onClick={handleLogout}
                   className="text-slate-300 hover:text-white focus:text-white focus:bg-white/5 cursor-pointer"
                 >
                   <LogOut className="w-4 h-4 mr-2" />
-                  Disconnect
+                  Sign Out
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
             <Button 
-              onClick={handleConnect}
-              className="bg-gradient-to-r from-indigo-500 via-purple-500 to-blue-500 hover:opacity-90 text-white font-medium gap-2"
+              onClick={handleLogin}
+              className="bg-gradient-to-r from-indigo-500 via-purple-500 to-blue-500 hover:opacity-90 text-white font-medium"
             >
-              <Wallet className="w-4 h-4" />
-              Connect Wallet
+              Sign In
             </Button>
           )}
         </div>
