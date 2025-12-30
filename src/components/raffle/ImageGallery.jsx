@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export default function ImageGallery({ images = [] }) {
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
   if (images.length === 0) return null;
 
@@ -18,7 +19,7 @@ export default function ImageGallery({ images = [] }) {
 
   return (
     <div className="space-y-4">
-      {/* Main Image Display - Much Larger */}
+      {/* Main Image Display - Fixed Size */}
       <div className="relative bg-gradient-to-br from-[#0a0f1c] to-[#131A2B] rounded-2xl border border-white/5 overflow-hidden">
         <div className="aspect-[4/3] flex items-center justify-center p-12 relative">
           <AnimatePresence mode="wait">
@@ -30,7 +31,8 @@ export default function ImageGallery({ images = [] }) {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.3 }}
-              className="max-w-full max-h-full object-contain drop-shadow-2xl"
+              onClick={() => setIsLightboxOpen(true)}
+              className="max-w-full max-h-full object-contain drop-shadow-2xl cursor-zoom-in"
             />
           </AnimatePresence>
 
@@ -81,12 +83,76 @@ export default function ImageGallery({ images = [] }) {
               <img
                 src={image}
                 alt={`View ${index + 1}`}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain bg-[#0a0f1c]"
               />
             </button>
           ))}
         </div>
       )}
+
+      {/* Lightbox Modal */}
+      <AnimatePresence>
+        {isLightboxOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsLightboxOpen(false)}
+            className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm flex items-center justify-center p-4"
+          >
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setIsLightboxOpen(false)}
+              className="absolute top-4 right-4 text-white hover:bg-white/10 w-12 h-12"
+            >
+              <X className="w-6 h-6" />
+            </Button>
+
+            <div className="relative max-w-7xl w-full h-full flex items-center justify-center">
+              <motion.img
+                initial={{ scale: 0.9 }}
+                animate={{ scale: 1 }}
+                src={images[selectedIndex]}
+                alt={`Product image ${selectedIndex + 1}`}
+                className="max-w-full max-h-full object-contain"
+                onClick={(e) => e.stopPropagation()}
+              />
+
+              {images.length > 1 && (
+                <>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handlePrevious();
+                    }}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white backdrop-blur-sm rounded-full w-14 h-14"
+                  >
+                    <ChevronLeft className="w-7 h-7" />
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleNext();
+                    }}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white backdrop-blur-sm rounded-full w-14 h-14"
+                  >
+                    <ChevronRight className="w-7 h-7" />
+                  </Button>
+                </>
+              )}
+
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-sm px-4 py-2 rounded-full text-white text-sm font-medium">
+                {selectedIndex + 1} / {images.length}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
