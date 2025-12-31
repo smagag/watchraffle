@@ -99,18 +99,18 @@ export default function ImageGallery({ images = [] }) {
             exit={{ opacity: 0 }}
             onClick={() => setIsLightboxOpen(false)}
             style={{ zIndex: 999999 }}
-            className="fixed inset-0 bg-black/60 backdrop-blur-lg flex items-center justify-center p-16"
+            className="fixed inset-0 bg-black/80 backdrop-blur-xl flex items-center justify-center p-20"
           >
             <Button
               variant="ghost"
               size="icon"
               onClick={() => setIsLightboxOpen(false)}
-              className="absolute top-8 right-8 text-white hover:bg-white/10 w-12 h-12"
+              className="absolute top-8 right-8 text-white hover:bg-white/10 w-12 h-12 z-[1000000]"
             >
               <X className="w-6 h-6" />
             </Button>
 
-            <div className="relative max-w-4xl max-h-[70vh] w-full flex items-center justify-center">
+            <div className="relative max-w-3xl max-h-[60vh] w-full flex items-center justify-center z-[1000000]">
               <motion.img
                 initial={{ scale: 0.9 }}
                 animate={{ scale: 1 }}
