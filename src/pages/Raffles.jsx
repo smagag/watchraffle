@@ -18,31 +18,7 @@ export default function Raffles() {
   const upcomingRaffles = raffles.filter(r => r.status === 'upcoming');
   const completedRaffles = raffles.filter(r => r.status === 'completed');
 
-  // Demo data if no raffles exist
-  const demoRaffles = [
-    {
-      id: 'demo-1',
-      name: 'Rolex Daytona',
-      description: 'Cosmograph Daytona in Oystersteel',
-      image_url: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/695254ac00a1403bc0449d13/4314007e2_m126503-0003.png',
-      total_tickets: 200,
-      prize_value_usd: 24500,
-      end_date: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
-      status: 'active'
-    },
-    {
-      id: 'demo-2',
-      name: 'Omega Speedmaster',
-      description: 'Moonwatch Professional',
-      image_url: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&q=80',
-      total_tickets: 150,
-      prize_value_usd: 12500,
-      end_date: new Date(Date.now() + 21 * 24 * 60 * 60 * 1000).toISOString(),
-      status: 'upcoming'
-    }
-  ];
-
-  const displayRaffles = raffles.length > 0 ? raffles : demoRaffles;
+  const displayRaffles = raffles;
 
   const RaffleCard = ({ raffle, index }) => {
     const isActive = raffle.status === 'active';
