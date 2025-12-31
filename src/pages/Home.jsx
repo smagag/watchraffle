@@ -33,6 +33,8 @@ export default function Home() {
   return (
     <div className="pb-16">
       <HeroSection />
+      <ActiveRaffleCard raffle={activeRaffle} />
+      <StatsBar raffle={activeRaffle} />
       
       <HowItWorksSection />
       
