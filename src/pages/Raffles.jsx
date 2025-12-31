@@ -131,33 +131,27 @@ export default function Raffles() {
         </motion.div>
 
         {/* Active Raffle - Single Large Card */}
-        {(activeRaffles.length > 0 || !raffles.length) && (
+        {activeRaffles.length > 0 && (
           <div className="mb-12">
             <h2 className="text-2xl font-medium text-white mb-6 flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-emerald-400" />
               Live Now
             </h2>
             <div className="max-w-4xl mx-auto">
-              {(() => {
-                const activeRaffle = activeRaffles.length > 0 ? activeRaffles[0] : displayRaffles.find(r => r.status === 'active');
-                return activeRaffle ? <RaffleCard raffle={activeRaffle} index={0} /> : null;
-              })()}
+              <RaffleCard raffle={activeRaffles[0]} index={0} />
             </div>
           </div>
         )}
 
         {/* Next Raffle - Single Large Card */}
-        {(upcomingRaffles.length > 0 || (!raffles.length && displayRaffles.some(r => r.status === 'upcoming'))) && (
+        {upcomingRaffles.length > 0 && (
           <div className="mb-12">
             <h2 className="text-2xl font-medium text-white mb-6 flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-blue-400" />
               Next
             </h2>
             <div className="max-w-4xl mx-auto">
-              {(() => {
-                const nextRaffle = upcomingRaffles.length > 0 ? upcomingRaffles[0] : displayRaffles.find(r => r.status === 'upcoming');
-                return nextRaffle ? <RaffleCard raffle={nextRaffle} index={0} /> : null;
-              })()}
+              <RaffleCard raffle={upcomingRaffles[0]} index={0} />
             </div>
           </div>
         )}
