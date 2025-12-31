@@ -10,7 +10,7 @@ import MechanismExplainer from '@/components/raffle/MechanismExplainer';
 
 const DEMO_ACTIVE_RAFFLE = {
   id: 'demo-1',
-  name: 'Rolex Daytona Cosmograph',
+  name: 'Rolex Daytona',
   description: 'Cosmograph Daytona in 18kt yellow gold with black dial. The ultimate chronograph for racing enthusiasts.',
   image_url: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/695254ac00a1403bc0449d13/4314007e2_m126503-0003.png',
   total_tickets: 200,
