@@ -33,6 +33,33 @@ const DEMO_UPCOMING_RAFFLE = {
   status: 'upcoming',
 };
 
+const DEMO_PAST_WINNERS = [
+  {
+    id: 'demo-past-1',
+    name: 'Audemars Piguet Royal Oak',
+    description: 'Royal Oak Selfwinding in stainless steel with blue "Grande Tapisserie" dial.',
+    image_url: 'https://images.unsplash.com/photo-1622434641406-a158123450f9?w=800',
+    total_tickets: 200,
+    prize_value_usd: 42000,
+    status: 'completed',
+    winning_ticket: 147,
+    winner_wallet: '9mKp3xQr7tUv2wYzA8bC5dE6fG9hJ2kL4mNoP1qRsT3u',
+    tx_hash: '5xFg2JkLm8NpQr4St9Vw1Xy3Za7Bc5De6Gh8Ij2Kl4Mn',
+  },
+  {
+    id: 'demo-past-2',
+    name: 'Omega Speedmaster',
+    description: 'Moonwatch Professional in stainless steel. The first watch worn on the moon.',
+    image_url: 'https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?w=800',
+    total_tickets: 200,
+    prize_value_usd: 7500,
+    status: 'completed',
+    winning_ticket: 73,
+    winner_wallet: '4nLp8yRr3Uv6wXzB2cD9eF1gH5iJ7kM2nOpQ4rSsV8w',
+    tx_hash: '2yHi5KlMn1PqRs4Tu8Vx3Yz6Ab9Cd2Ef7Gh1Jk4Lm9No',
+  },
+];
+
 export default function Raffles() {
   const { data: raffles = [] } = useQuery({
     queryKey: ['raffles'],
@@ -42,6 +69,9 @@ export default function Raffles() {
   const activeRaffle = raffles.find(r => r.status === 'active') || DEMO_ACTIVE_RAFFLE;
   const upcomingRaffle = raffles.find(r => r.status === 'upcoming') || DEMO_UPCOMING_RAFFLE;
   const completedRaffles = raffles.filter(r => r.status === 'completed');
+  
+  // Use demo data if no completed raffles exist
+  const displayCompletedRaffles = completedRaffles.length > 0 ? completedRaffles : DEMO_PAST_WINNERS;
 
   const RaffleCard = ({ raffle, index, isActive = false }) => {
     const progress = 43.5; // Demo progress
@@ -188,9 +218,9 @@ export default function Raffles() {
             <div className="w-2 h-2 rounded-full bg-slate-500" />
             Past Winners
           </h2>
-          {completedRaffles.length > 0 ? (
+          {displayCompletedRaffles.length > 0 ? (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {completedRaffles.map((raffle, i) => (
+              {displayCompletedRaffles.map((raffle, i) => (
                 <motion.div
                   key={raffle.id}
                   initial={{ opacity: 0, y: 20 }}
