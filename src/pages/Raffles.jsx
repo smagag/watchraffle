@@ -8,17 +8,29 @@ import { Button } from '@/components/ui/button';
 import { Clock, Ticket, ChevronRight, Trophy } from 'lucide-react';
 import { motion } from 'framer-motion';
 
+const DEMO_RAFFLE = {
+  id: 'demo-1',
+  name: 'Rolex Daytona',
+  description: 'Cosmograph Daytona in 18kt yellow gold with black dial. The ultimate chronograph for racing enthusiasts.',
+  image_url: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/695254ac00a1403bc0449d13/4314007e2_m126503-0003.png',
+  total_tickets: 200,
+  hold_amount: 200,
+  prize_value_usd: 24500,
+  end_date: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
+  status: 'active'
+};
+
 export default function Raffles() {
   const { data: raffles = [], isLoading } = useQuery({
     queryKey: ['raffles'],
     queryFn: () => base44.entities.Raffle.list('-created_date'),
   });
 
-  const activeRaffles = raffles.filter(r => r.status === 'active');
-  const upcomingRaffles = raffles.filter(r => r.status === 'upcoming');
-  const completedRaffles = raffles.filter(r => r.status === 'completed');
-
-  const displayRaffles = raffles;
+  const allRaffles = raffles.length > 0 ? raffles : [DEMO_RAFFLE];
+  
+  const activeRaffles = allRaffles.filter(r => r.status === 'active');
+  const upcomingRaffles = allRaffles.filter(r => r.status === 'upcoming');
+  const completedRaffles = allRaffles.filter(r => r.status === 'completed');
 
   const RaffleCard = ({ raffle, index }) => {
     const isActive = raffle.status === 'active';
