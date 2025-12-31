@@ -129,7 +129,7 @@ export default function ImageGallery({ images = [] }) {
                       e.stopPropagation();
                       handlePrevious();
                     }}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white backdrop-blur-sm rounded-full w-14 h-14"
+                    className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white backdrop-blur-sm rounded-full w-14 h-14 z-[1000000]"
                   >
                     <ChevronLeft className="w-7 h-7" />
                   </Button>
@@ -140,14 +140,14 @@ export default function ImageGallery({ images = [] }) {
                       e.stopPropagation();
                       handleNext();
                     }}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white backdrop-blur-sm rounded-full w-14 h-14"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/60 hover:bg-black/80 text-white backdrop-blur-sm rounded-full w-14 h-14 z-[1000000]"
                   >
                     <ChevronRight className="w-7 h-7" />
                   </Button>
                 </>
               )}
 
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-sm px-4 py-2 rounded-full text-white text-sm font-medium">
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-sm px-4 py-2 rounded-full text-white text-sm font-medium z-[1000000]">
                 {selectedIndex + 1} / {images.length}
               </div>
             </div>
