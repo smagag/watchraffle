@@ -5,7 +5,6 @@ import HeroSection from '@/components/home/HeroSection';
 import ActiveRaffleCard from '@/components/home/ActiveRaffleCard';
 import StatsBar from '@/components/home/StatsBar';
 import HowItWorksSection from '@/components/home/HowItWorksSection';
-import PastWinnersSection from '@/components/home/PastWinnersSection';
 import MechanismExplainer from '@/components/raffle/MechanismExplainer';
 
 const DEMO_ACTIVE_RAFFLE = {
@@ -28,7 +27,6 @@ export default function Home() {
   });
 
   const activeRaffle = raffles.find(r => r.status === 'active') || DEMO_ACTIVE_RAFFLE;
-  const completedRaffles = raffles.filter(r => r.status === 'completed');
 
   return (
     <div className="pb-16">
@@ -44,8 +42,6 @@ export default function Home() {
           <MechanismExplainer />
         </div>
       </section>
-      
-      <PastWinnersSection winners={completedRaffles} />
     </div>
   );
 }
