@@ -5,7 +5,6 @@ import { Button } from '@/components/ui/button';
 
 export default function ImageGallery({ images = [] }) {
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
   if (images.length === 0) return null;
 
@@ -31,8 +30,7 @@ export default function ImageGallery({ images = [] }) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              onClick={() => setIsLightboxOpen(true)}
-              className="max-w-full max-h-full object-contain drop-shadow-2xl cursor-zoom-in"
+              className="max-w-full max-h-full object-contain drop-shadow-2xl"
             />
           </AnimatePresence>
 
