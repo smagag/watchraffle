@@ -119,7 +119,8 @@ export default function RaffleDetail() {
                     Live
                   </Badge>
                   <h1 className="text-2xl font-semibold text-white mb-2">{raffle.name}</h1>
-                  <p className="text-slate-400 text-sm mb-6">{raffle.description}</p>
+                  <p className="text-slate-400 text-sm mb-2 whitespace-pre-line">{raffle.description}</p>
+                  <p className="text-slate-500 text-xs mb-6">Ref 126503</p>
 
                   {/* Countdown */}
                   <div className="mb-6">
