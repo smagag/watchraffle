@@ -87,9 +87,9 @@ export default function MyTickets() {
   const demoTickets = [
     {
       id: 1,
-      raffle_name: 'Rolex Daytona Cosmograph',
+      raffle_name: 'Rolex Daytona',
       raffle_id: 'demo-1',
-      raffle_image: 'https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=400&q=80',
+      raffle_image: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/695254ac00a1403bc0449d13/4314007e2_m126503-0003.png',
       ticket_number: 47,
       ticket_price: 47,
       hold_amount: 200,
@@ -104,9 +104,9 @@ export default function MyTickets() {
     },
     {
       id: 2,
-      raffle_name: 'Rolex Daytona Cosmograph',
+      raffle_name: 'Rolex Daytona',
       raffle_id: 'demo-1',
-      raffle_image: 'https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=400&q=80',
+      raffle_image: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/695254ac00a1403bc0449d13/4314007e2_m126503-0003.png',
       ticket_number: 134,
       ticket_price: 134,
       hold_amount: 200,
