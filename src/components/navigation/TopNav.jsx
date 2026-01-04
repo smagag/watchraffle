@@ -11,6 +11,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import SignInModal from '@/components/auth/SignInModal';
+import XPDisplay from '@/components/xp/XPDisplay';
 
 export default function TopNav() {
   const [user, setUser] = useState(null);
@@ -69,27 +70,30 @@ export default function TopNav() {
           </div>
 
           {user ? (
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button 
-                  variant="outline" 
-                  className="bg-[#131A2B] border-white/10 text-white hover:bg-[#1a2235] hover:text-white gap-2"
-                >
-                  <User className="w-4 h-4" />
-                  <span className="text-sm">{user.full_name || user.email}</span>
-                  <ChevronDown className="w-4 h-4 text-slate-400" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="bg-[#131A2B] border-white/10">
-                <DropdownMenuItem 
-                  onClick={handleLogout}
-                  className="text-slate-300 hover:text-white focus:text-white focus:bg-white/5 cursor-pointer"
-                >
-                  <LogOut className="w-4 h-4 mr-2" />
-                  Sign Out
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <div className="flex items-center gap-4">
+              <XPDisplay xp={user.xp_points || 0} compact={true} />
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button 
+                    variant="outline" 
+                    className="bg-[#131A2B] border-white/10 text-white hover:bg-[#1a2235] hover:text-white gap-2"
+                  >
+                    <User className="w-4 h-4" />
+                    <span className="text-sm">{user.full_name || user.email}</span>
+                    <ChevronDown className="w-4 h-4 text-slate-400" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="bg-[#131A2B] border-white/10">
+                  <DropdownMenuItem 
+                    onClick={handleLogout}
+                    className="text-slate-300 hover:text-white focus:text-white focus:bg-white/5 cursor-pointer"
+                  >
+                    <LogOut className="w-4 h-4 mr-2" />
+                    Sign Out
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
           ) : (
             <Button 
               onClick={handleLogin}

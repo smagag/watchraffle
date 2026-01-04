@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Wallet, Shuffle, DollarSign, CheckCircle, ArrowRight, Loader2 } from 'lucide-react';
+import { X, Wallet, Shuffle, DollarSign, CheckCircle, ArrowRight, Loader2, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { base44 } from '@/api/base44Client';
 
 export default function PurchaseModal({ isOpen, onClose, entryCount, paymentMethod }) {
   const [step, setStep] = useState('hold'); // hold -> assigning -> refunding -> complete
@@ -56,7 +57,20 @@ export default function PurchaseModal({ isOpen, onClose, entryCount, paymentMeth
       setStep('refunding');
       await new Promise(resolve => setTimeout(resolve, 2000));
       
-      // Step 4: Complete
+      // Step 4: Complete + Award XP
+      const awardXP = async () => {
+        try {
+          const user = await base44.auth.me();
+          const xpToAward = entryCount * 75;
+          await base44.auth.updateMe({
+            xp_points: (user.xp_points || 0) + xpToAward
+          });
+        } catch (error) {
+          console.error('Failed to award XP:', error);
+        }
+      };
+      
+      await awardXP();
       setStep('complete');
     };
 
@@ -206,9 +220,13 @@ export default function PurchaseModal({ isOpen, onClose, entryCount, paymentMeth
                     <CheckCircle className="w-8 h-8 text-emerald-400" />
                   </motion.div>
                   <h3 className="text-2xl font-semibold text-white mb-3">Purchase Complete!</h3>
-                  <p className="text-slate-400">
+                  <p className="text-slate-400 mb-3">
                     Your tickets have been assigned and excess funds refunded
                   </p>
+                  <div className="flex items-center justify-center gap-2 text-yellow-400">
+                    <Zap className="w-5 h-5 fill-yellow-400" />
+                    <span className="font-semibold">+{entryCount * 75} XP Earned!</span>
+                  </div>
                 </div>
 
                 {/* Summary */}
