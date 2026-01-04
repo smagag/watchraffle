@@ -17,7 +17,7 @@ const DEMO_ACTIVE_RAFFLE = {
   total_tickets: 200,
   hold_amount: 200,
   prize_value_usd: 24500,
-  end_date: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
+  end_date: new Date('2026-01-18T23:59:59').toISOString(),
   status: 'active',
 };
 
