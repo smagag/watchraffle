@@ -48,7 +48,8 @@ export default function ActiveRaffleCard({ raffle, ticketsSold = 87 }) {
             <div className="p-8 flex flex-col">
               <div className="mb-6">
                 <h2 className="text-2xl font-semibold text-white mb-2">{raffle.name}</h2>
-                <p className="text-slate-400 text-sm">{raffle.description || 'Luxury timepiece raffle'}</p>
+                <p className="text-slate-400 text-sm whitespace-pre-line">{raffle.description || 'Luxury timepiece raffle'}</p>
+                <p className="text-slate-500 text-xs mt-1">Ref 126503</p>
               </div>
 
               {/* Countdown */}

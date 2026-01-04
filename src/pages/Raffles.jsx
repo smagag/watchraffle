@@ -106,7 +106,8 @@ export default function Raffles() {
             {/* Details */}
             <div className="p-8 flex flex-col justify-center">
               <h3 className="text-3xl font-semibold text-white mb-3">{raffle.name}</h3>
-              <p className="text-slate-400 mb-6">{raffle.description}</p>
+              <p className="text-slate-400 mb-2 whitespace-pre-line">{raffle.description}</p>
+              <p className="text-slate-500 text-sm mb-6">Ref 126503</p>
 
               {/* Countdown */}
               {isActive && (
