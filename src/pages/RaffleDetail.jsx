@@ -26,7 +26,7 @@ export default function RaffleDetail() {
   const demoRaffle = {
     id: 'demo-1',
     name: 'Rolex Daytona',
-    description: 'Cosmograph Daytona in Oystersteel with black dial. This legendary chronograph combines precision engineering with timeless design.',
+    description: 'Rolex Cosmograph Daytona\nOyster, 40 mm, Oystersteel and yellow gold.',
     image_url: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/695254ac00a1403bc0449d13/4314007e2_m126503-0003.png',
     images: [
       'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/695254ac00a1403bc0449d13/4314007e2_m126503-0003.png',
