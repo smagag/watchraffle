@@ -72,7 +72,7 @@ export default function RaffleDetail() {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const handlePurchase = async (method) => {
+  const handlePurchase = async (method, xpTickets = 0) => {
     setPaymentMethod(method);
     setShowPurchaseModal(true);
   };
