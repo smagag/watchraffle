@@ -1,0 +1,12 @@
+{
+  "name": "User",
+  "type": "object",
+  "properties": {
+    "xp_points": {
+      "type": "number",
+      "default": 0,
+      "description": "Experience points earned from raffle tickets"
+    }
+  },
+  "required": []
+}

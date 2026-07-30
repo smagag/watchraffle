@@ -1,0 +1,60 @@
+{
+  "name": "Raffle",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Watch/prize name"
+    },
+    "description": {
+      "type": "string"
+    },
+    "image_url": {
+      "type": "string",
+      "description": "Watch image URL"
+    },
+    "total_tickets": {
+      "type": "number",
+      "default": 200
+    },
+    "hold_amount": {
+      "type": "number",
+      "default": 200,
+      "description": "Hold amount required per entry in USD"
+    },
+    "prize_value_usd": {
+      "type": "number"
+    },
+    "end_date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "completed",
+        "upcoming"
+      ],
+      "default": "upcoming"
+    },
+    "contract_address": {
+      "type": "string"
+    },
+    "winning_ticket": {
+      "type": "number",
+      "description": "Winning ticket number after draw"
+    },
+    "winner_wallet": {
+      "type": "string"
+    },
+    "tx_hash": {
+      "type": "string",
+      "description": "Transaction hash of the draw"
+    }
+  },
+  "required": [
+    "name",
+    "total_tickets"
+  ]
+}

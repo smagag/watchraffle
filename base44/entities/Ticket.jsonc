@@ -1,0 +1,55 @@
+{
+  "name": "Ticket",
+  "type": "object",
+  "properties": {
+    "raffle_id": {
+      "type": "string",
+      "description": "Reference to the raffle"
+    },
+    "ticket_number": {
+      "type": "number",
+      "description": "Ticket ID (1-200)"
+    },
+    "ticket_price": {
+      "type": "number",
+      "description": "Actual price of this ticket ($1-$200)"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "available",
+        "sold",
+        "reserved"
+      ],
+      "default": "available"
+    },
+    "owner_wallet": {
+      "type": "string"
+    },
+    "payment_method": {
+      "type": "string",
+      "enum": [
+        "SOL",
+        "USDC",
+        "USDT"
+      ]
+    },
+    "hold_amount": {
+      "type": "number",
+      "default": 200,
+      "description": "Initial hold amount"
+    },
+    "refund_amount": {
+      "type": "number",
+      "description": "Amount refunded to user"
+    },
+    "tx_hash": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "raffle_id",
+    "ticket_number",
+    "ticket_price"
+  ]
+}
